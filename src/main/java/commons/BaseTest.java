@@ -33,11 +33,9 @@ public class BaseTest {
         BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
         switch (browserList) {
             case FIREFOX:
-                System.setProperty("webdriver.edge.driver", "C:\\Tools\\firefox.exe");
                 driver = new FirefoxDriver();
                 break;
             case CHROME:
-                System.setProperty("webdriver.edge.driver", "C:\\Tools\\chrome.exe");
                 driver = new ChromeDriver();
                 break;
             case EDGE:
