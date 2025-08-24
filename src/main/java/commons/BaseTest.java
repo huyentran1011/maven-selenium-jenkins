@@ -39,7 +39,6 @@ public class BaseTest {
                 driver = new ChromeDriver();
                 break;
             case EDGE:
-                System.setProperty("webdriver.edge.driver", "C:\\Tools\\msedgedriver.exe");
                 driver = new EdgeDriver();
                 break;
             case SAFARI:

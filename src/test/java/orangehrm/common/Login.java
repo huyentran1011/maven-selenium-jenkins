@@ -62,9 +62,6 @@ public class Login extends BaseTest {
         Assert.assertFalse(sideAndTopBar.isProfilePictureDisplayed());
 
         sideAndTopBar.sleepInSeconds(5);
-
-        // Get all cookies
-        orangeHRMCookies = sideAndTopBar.getAllCookies(driver);
     }
 
     @AfterClass(alwaysRun = true)
