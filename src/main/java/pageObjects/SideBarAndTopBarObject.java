@@ -33,6 +33,11 @@ public class SideBarAndTopBarObject extends BasePage {
         return isElementDisplayed(driver, SidePanelAndTopBarUI.PROFILE_PICTURE);
     }
 
+    @Step("Verify the Profile picture.")
+    public boolean isProfilePictureUndisplayed(){
+        return isElementUndisplayed(driver, SidePanelAndTopBarUI.PROFILE_PICTURE);
+    }
+
     @Step("Click on the Profile picture.")
     public void clickOnProfilePicture(){
         waitForElementClickable(driver, SidePanelAndTopBarUI.PROFILE_PICTURE);
