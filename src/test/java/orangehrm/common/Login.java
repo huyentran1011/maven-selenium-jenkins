@@ -50,11 +50,26 @@ public class Login extends BaseTest {
     }
 
     @Test
-    public void Login_Fail() {
+    public void Login_Fail_UsernameIsNull() {
         // Login
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", "");
         loginPage.enterValueIntoTextboxByNameAttribute(driver, "password", GlobalConstants.ADMIN_PASSWORD_LIVE);
+        loginPage.clickOnButtonByText(driver, "Login");
+
+        // Verify login fail
+        sideAndTopBar = PageGenerator.getSideBarAndTopBar(driver);
+        Assert.assertFalse(sideAndTopBar.isProfilePictureDisplayed());
+
+        sideAndTopBar.sleepInSeconds(5);
+    }
+
+    @Test
+    public void Login_Fail_PasswordIsNull() {
+        // Login
+        loginPage = PageGenerator.getLoginPage(driver);
+        loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", GlobalConstants.ADMIN_USERNAME_LIVE);
+        loginPage.enterValueIntoTextboxByNameAttribute(driver, "password", "");
         loginPage.clickOnButtonByText(driver, "Login");
 
         // Verify login fail
