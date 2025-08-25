@@ -75,9 +75,24 @@ public class Login extends BaseTest {
         sideAndTopBar.refreshCurrentPage(driver);
     }
 
+    @Test
+    public void TC04_Login_Fail_WrongUsernameAndPassword() {
+        // Login
+        loginPage = PageGenerator.getLoginPage(driver);
+        loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", "huyentran");
+        loginPage.enterValueIntoTextboxByNameAttribute(driver, "password", "12345");
+        loginPage.clickOnButtonByText(driver, "Login");
+
+        // Verify login fail
+        sideAndTopBar = PageGenerator.getSideBarAndTopBar(driver);
+        Assert.assertTrue(sideAndTopBar.isProfilePictureUndisplayed());
+
+        sideAndTopBar.refreshCurrentPage(driver);
+    }
+
 
     @Test
-    public void TC04_Login_Success() {
+    public void TC05_Login_Success() {
         // Login
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", GlobalConstants.ADMIN_USERNAME_LIVE);
