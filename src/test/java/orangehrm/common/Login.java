@@ -31,7 +31,22 @@ public class Login extends BaseTest {
     }
 
     @Test
-    public void TC01_Login_Fail_UsernameIsNull() {
+    public void TC01_Login_Fail_UsernameAndPasswordIsNull() {
+        // Login
+        loginPage = PageGenerator.getLoginPage(driver);
+        loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", "");
+        loginPage.enterValueIntoTextboxByNameAttribute(driver, "password", "");
+        loginPage.clickOnButtonByText(driver, "Login");
+
+        // Verify login fail
+        sideAndTopBar = PageGenerator.getSideBarAndTopBar(driver);
+        Assert.assertTrue(sideAndTopBar.isProfilePictureUndisplayed());
+
+        sideAndTopBar.refreshCurrentPage(driver);
+    }
+
+    @Test
+    public void TC02_Login_Fail_UsernameIsNull() {
         // Login
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", "");
@@ -41,11 +56,12 @@ public class Login extends BaseTest {
         // Verify login fail
         sideAndTopBar = PageGenerator.getSideBarAndTopBar(driver);
         Assert.assertTrue(sideAndTopBar.isProfilePictureUndisplayed());
+
         sideAndTopBar.refreshCurrentPage(driver);
     }
 
     @Test
-    public void TC02_Login_Fail_PasswordIsNull() {
+    public void TC03_Login_Fail_PasswordIsNull() {
         // Login
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", GlobalConstants.ADMIN_USERNAME_LIVE);
@@ -56,13 +72,12 @@ public class Login extends BaseTest {
         sideAndTopBar = PageGenerator.getSideBarAndTopBar(driver);
         Assert.assertTrue(sideAndTopBar.isProfilePictureUndisplayed());
 
-        sideAndTopBar.sleepInSeconds(5);
         sideAndTopBar.refreshCurrentPage(driver);
     }
 
 
     @Test
-    public void TC03_Login_Success() {
+    public void TC04_Login_Success() {
         // Login
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.enterValueIntoTextboxByNameAttribute(driver, "username", GlobalConstants.ADMIN_USERNAME_LIVE);
@@ -73,7 +88,6 @@ public class Login extends BaseTest {
         sideAndTopBar = PageGenerator.getSideBarAndTopBar(driver);
         Assert.assertTrue(sideAndTopBar.isProfilePictureDisplayed());
 
-        sideAndTopBar.sleepInSeconds(5);
         sideAndTopBar.logout();
     }
 
